@@ -6,6 +6,9 @@ class View(object):
         self._page = page
         self._page.title = "Calcolatrice FLET" 
         self._page.horizontal_alignment = 'CENTER'
+        self._page.vertical_alignment = 'CENTER'
+        self._page.window_height = 300
+        self._page.window_width = 300
         self._titolo = None
         self._controller = None
 
@@ -26,7 +29,7 @@ class View(object):
         self._btn4 = ft.ElevatedButton(text='4', color='white', bgcolor='#808080', on_click=self._controller.saveNumber)
         self._btn5 = ft.ElevatedButton(text='5', color='white', bgcolor='#808080', on_click=self._controller.saveNumber)
         self._btn6 = ft.ElevatedButton(text='6', color='white', bgcolor='#808080', on_click=self._controller.saveNumber)
-        self._btnMolt = ft.ElevatedButton(text='*', color='white', bgcolor='#FF8C00', on_click=self._controller.saveSign)
+        self._btnMolt = ft.ElevatedButton(text='x', color='white', bgcolor='#FF8C00', on_click=self._controller.saveSign)
         row3 = ft.Row(controls=[self._btn4, self._btn5, self._btn6, self._btnMolt])
 
         # Riga 4

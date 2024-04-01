@@ -7,18 +7,18 @@ class Controller(object):
         self._view = view
         self._model = Model()
         self._sign = None
-        self._temporaneo = ''
+        self._valoreTemporaneoCntr = '' # valore temporaneo Controller
         
     def saveNumber(self, event):
         num = event.control.text
-        self._view._display.value = self._temporaneo
+        self._view._display.value = self._valoreTemporaneoCntr
         self._view._display.value += num
-        self._temporaneo = self._view._display.value
-        self._model.numero = self._temporaneo
+        self._valoreTemporaneoCntr = self._view._display.value
+        self._model.numero = self._valoreTemporaneoCntr
         self._view.update()
 
     def saveSign(self, event):
-        self._temporaneo = ''
+        self._valoreTemporaneoCntr = ''
         if event.control.text == "+":
             self._sign = event.control.text
             self._model.addizione()
@@ -27,7 +27,7 @@ class Controller(object):
             self._sign = event.control.text
             self._model.sottrazione()
             self.disableButtons()
-        elif event.control.text == "*":
+        elif event.control.text == "x":
             self._sign = event.control.text
             self._model.moltiplicazione()
             self.disableButtons()
@@ -42,7 +42,7 @@ class Controller(object):
                 self._model.addizione()
             elif self._sign == "-":
                 self._model.sottrazione()
-            elif self._sign == "*":
+            elif self._sign == "x":
                 self._model.moltiplicazione()
             elif self._sign == "÷":
                 self._model.divisione()
@@ -57,7 +57,7 @@ class Controller(object):
     
     def clear(self, event):
         self._view._display.value = "0"
-        self._temporaneo = ''
+        self._valoreTemporaneoCntr = ''
         self._view.update()
         self.enableButtons()
         self._model.clear()

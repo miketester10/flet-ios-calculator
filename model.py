@@ -1,7 +1,7 @@
 class Model(object):
     def __init__(self):
-        self._numero = 0
-        self._temporaneo = 0
+        self._numero = 0 # lo controllo con il @property / setter poichè accessibile dall'esterno (dal Controller)
+        self._valoreTemporaneoMdl = 0 # valore temporaneo Model
         self._risultato = None
         self._firstTime = True
         self._flagRisultato = False
@@ -21,55 +21,55 @@ class Model(object):
     
     def addizione(self):
         if not self._flagRisultato and not self._firstTime:
-            self._temporaneo += self._numero
-            self._risultato = self._temporaneo
+            self._valoreTemporaneoMdl += self._numero
+            self._risultato = self._valoreTemporaneoMdl
         elif self._firstTime:
-            self._temporaneo = self._numero
+            self._valoreTemporaneoMdl = self._numero
             self._firstTime = False
         else:
-            self._temporaneo = self._risultato
+            self._valoreTemporaneoMdl = self._risultato
             self._flagRisultato = False
 
     def sottrazione(self): 
         if not self._flagRisultato and not self._firstTime:
-            self._temporaneo -= self._numero
-            self._risultato = self._temporaneo
+            self._valoreTemporaneoMdl -= self._numero
+            self._risultato = self._valoreTemporaneoMdl
         elif self._firstTime:
-            self._temporaneo = self._numero
+            self._valoreTemporaneoMdl = self._numero
             self._firstTime = False
         else:
-            self._temporaneo = self._risultato
+            self._valoreTemporaneoMdl = self._risultato
             self._flagRisultato = False
     
     def moltiplicazione(self):
         if not self._flagRisultato and not self._firstTime:
-            self._temporaneo *= self._numero
-            self._risultato = self._temporaneo
+            self._valoreTemporaneoMdl *= self._numero
+            self._risultato = self._valoreTemporaneoMdl
             if self._risultato == 0.0:
                 self._risultato = int(self._risultato)
         elif self._firstTime:
-            self._temporaneo = self._numero
+            self._valoreTemporaneoMdl = self._numero
             self._firstTime = False
         else:
-            self._temporaneo = self._risultato
+            self._valoreTemporaneoMdl = self._risultato
             self._flagRisultato = False
     
     def divisione(self):
         try:
             if not self._flagRisultato and not self._firstTime:
-                if self._temporaneo % self._numero == 0:
+                if self._valoreTemporaneoMdl % self._numero == 0:
                     isINT = True
                 else:
                     isINT = False
-                self._temporaneo /= self._numero
-                self._risultato = self._temporaneo
+                self._valoreTemporaneoMdl /= self._numero
+                self._risultato = self._valoreTemporaneoMdl
                 if isINT:
                     self._risultato = int(self._risultato)
             elif self._firstTime:
-                self._temporaneo = self._numero
+                self._valoreTemporaneoMdl = self._numero
                 self._firstTime = False
             else:
-                self._temporaneo = self._risultato
+                self._valoreTemporaneoMdl = self._risultato
                 self._flagRisultato = False
         except ZeroDivisionError:
             raise ZeroDivisionError
@@ -81,7 +81,7 @@ class Model(object):
     def clear(self):
         self._numero = None
         self._risultato = None
-        self._temporaneo = 0
+        self._valoreTemporaneoMdl = 0
         self._flagRisultato = False
         self._firstTime = True
     
